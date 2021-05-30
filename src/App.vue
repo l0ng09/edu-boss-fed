@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Hello World</h1>
+    <h1 class="text">Hello World</h1>
     <el-row>
       <el-button>默认按钮</el-button>
       <el-button type="primary">主要按钮</el-button>
@@ -14,5 +14,8 @@
   </div>
 </template>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
+.text{
+  color: $danger-color;
+}
 </style>
