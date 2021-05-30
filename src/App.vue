@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <h1 class="text">Hello World</h1>
-    <el-row>
-      <el-button>默认按钮</el-button>
-      <el-button type="primary">主要按钮</el-button>
-      <el-button type="success">成功按钮</el-button>
-      <el-button type="info">信息按钮</el-button>
-      <el-button type="warning">警告按钮</el-button>
-      <el-button type="danger">危险按钮</el-button>
-    </el-row>
+    <h1 class="text">EDU Boss</h1>
     <!-- 统一的路由出口 -->
     <router-view />
   </div>
 </template>
+
+<script>
+import request from '@/utils/request'
+
+request('/boss').then(res => console.log(res))
+export default {
+}
+</script>
 
 <style lang="scss" scoped>
 .text{
