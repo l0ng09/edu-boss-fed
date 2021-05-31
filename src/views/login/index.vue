@@ -26,9 +26,7 @@
           type="primary"
           :loading="isLoginLoading"
           @click="onSubmit"
-        >
-          登录
-        </el-button>
+        >登录</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -50,20 +48,11 @@ export default Vue.extend({
       rules: {
         phone: [
           { required: true, message: '请输入手机号', trigger: 'blur' },
-          {
-            pattern: /^1\d{10}$/,
-            message: '请输入正确的手机号',
-            trigger: 'blur'
-          }
+          { pattern: /^1\d{10}$/, message: '请输入正确的手机号', trigger: 'blur' }
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
-          {
-            min: 6,
-            max: 18,
-            message: '长度在 6 到 18 个字符',
-            trigger: 'blur'
-          }
+          { min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur' }
         ]
       },
       isLoginLoading: false
@@ -97,7 +86,7 @@ export default Vue.extend({
           this.$store.commit('setUser', data.content)
           // 2. 然后在访问需要登录的页面的时候判断有没有登录状态（路由拦截器）
           //    成功：跳转回原来页面或首页
-          this.$router.push((this.$route.query.redirect as string) || '/')
+          this.$router.push(this.$route.query.redirect as string || '/')
           // this.$router.push({
           //   name: 'home'
           // })

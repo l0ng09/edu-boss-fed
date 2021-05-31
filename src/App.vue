@@ -1,20 +1,16 @@
 <template>
   <div id="app">
-    <!-- 统一的路由出口 -->
-    <router-view />
+    <!-- 根路由出口 -->
+    <router-view/>
   </div>
 </template>
 
-<script>
-import request from '@/utils/request'
+<script lang="ts">
+import Vue from 'vue'
 
-request('/boss').then(res => console.log(res))
-export default {
-}
+export default Vue.extend({
+  name: 'App'
+})
 </script>
 
-<style lang="scss" scoped>
-.text{
-  color: $danger-color;
-}
-</style>
+<style lang="scss" scoped></style>
