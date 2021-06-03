@@ -5,10 +5,10 @@
 import request from '@/utils/request'
 import qs from 'qs'
 
-interface User {
-  phone: string
-  password: string
-}
+ interface User {
+   phone: string
+   password: string
+ }
 
 export const login = (data: User) => {
   return request({
@@ -27,5 +27,23 @@ export const getUserInfo = () => {
   return request({
     method: 'GET',
     url: '/front/user/getInfo'
+  })
+}
+
+export const getUserPages = (data: any) => {
+  return request({
+    method: 'POST',
+    url: '/boss/user/getUserPages',
+    data
+  })
+}
+
+export const forbidUser = (userId: string | number) => {
+  return request({
+    method: 'POST',
+    url: '/boss/user/forbidUser',
+    params: {
+      userId
+    }
   })
 }
