@@ -38,7 +38,7 @@ import { Form } from 'element-ui'
 import { login } from '@/services/user'
 
 export default Vue.extend({
-  name: 'LoginPage',
+  name: 'LoginIndex',
   data () {
     return {
       form: {
