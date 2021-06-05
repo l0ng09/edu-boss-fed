@@ -1,8 +1,11 @@
 <template>
   <div class="menu">
-    <el-card class="box-card">
+    <div>
       <div slot="header" class="clearfix">
-        <el-button @click="$router.push({ name: 'menu-create' })">添加菜单</el-button>
+        <el-button
+          style="margin-bottom: 20px"
+          @click="$router.push({ name: 'menu-create' })"
+        >添加菜单</el-button>
       </div>
       <el-table
         :data="menus"
@@ -46,7 +49,7 @@
           </template>
         </el-table-column>
       </el-table>
-    </el-card>
+    </div>
   </div>
 </template>
 

@@ -1,13 +1,13 @@
 <template>
   <div class="resource-list">
-    <el-card class="box-card">
+    <div>
       <div slot="header" class="clearfix">
-        <el-form ref="form" :model="form" label-width="80px">
+        <el-form ref="form" :inline="true" label-position="top" :model="form" label-width="80px">
           <el-form-item prop="name" label="资源名称">
-            <el-input v-model="form.name"></el-input>
+            <el-input class="search-input" v-model="form.name"></el-input>
           </el-form-item>
           <el-form-item prop="url" label="资源路径">
-            <el-input v-model="form.url"></el-input>
+            <el-input class="search-input" v-model="form.url"></el-input>
           </el-form-item>
           <el-form-item prop="categoryId" label="资源分类">
             <el-select
@@ -25,14 +25,14 @@
           </el-form-item>
           <el-form-item>
             <el-button
-              type="primary"
-              @click="onSubmit"
-              :disabled="isLoading"
-            >查询搜索</el-button>
-            <el-button
               @click="onReset"
               :disabled="isLoading"
             >重置</el-button>
+            <el-button
+              type="primary"
+              @click="onSubmit"
+              :disabled="isLoading"
+            >查询</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -96,7 +96,7 @@
         layout="total, sizes, prev, pager, next, jumper"
         :total="totalCount">
       </el-pagination>
-    </el-card>
+    </div>
   </div>
 </template>
 
@@ -177,4 +177,16 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+form{
+  display: flex;
+  align-items: flex-end;
+  margin-top: -10px;
+}
+.el-form--label-top .el-form-item__label{
+  padding: 0 !important;
+}
+.search-input{
+  width: 220px;
+}
+</style>

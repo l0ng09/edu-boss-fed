@@ -3,12 +3,16 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
-// import 'element-ui/lib/theme-chalk/index.css'
+import Day from 'dayjs'
 
 // 加载全局样式
 import './styles/index.scss'
 
 Vue.use(ElementUI)
+
+Vue.filter('date', (date: string, format = 'YYYY-MM-DD HH:mm') => {
+  return Day(date).format(format)
+})
 
 Vue.config.productionTip = false
 

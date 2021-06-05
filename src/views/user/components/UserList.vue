@@ -1,7 +1,7 @@
 <template>
-  <el-card>
+  <div>
     <div slot="header">
-      <el-form :model="filterParams" ref="filter-form">
+      <el-form :model="filterParams" :inline="true" label-position="top" ref="filter-form">
         <el-form-item label="手机号" prop="phone">
           <el-input v-model="filterParams.phone"></el-input>
         </el-form-item>
@@ -15,7 +15,7 @@
             value-format="yyyy-MM-dd"
           />
         </el-form-item>
-        <el-form-item>
+        <el-form-item class="form-btn">
           <el-button
             :disabled="loading"
             @click="handleReset"
@@ -48,18 +48,19 @@
       </el-table-column>
       <el-table-column
         prop="name"
-        label="用户名"
-        width="120">
+        label="用户名">
       </el-table-column>
       <el-table-column
         prop="phone"
-        label="手机号"
-        width="120">
+        label="手机号">
       </el-table-column>
       <el-table-column
         prop="createTime"
         label="注册时间"
-        width="120">
+        width="200">
+        <template slot-scope="scope">
+          {{scope.row.createTime | date}}
+        </template>
       </el-table-column>
       <!-- <el-table-column
         prop="name"
@@ -109,7 +110,7 @@
         >确 定</el-button>
       </span>
     </el-dialog>
-  </el-card>
+  </div>
 </template>
 
 <script lang="ts">
@@ -203,4 +204,16 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+form{
+  display: flex;
+  align-items: flex-end;
+  margin-top: -10px;
+}
+.el-input{
+  width: 220px;
+}
+.el-form--label-top .el-form-item__label{
+  padding: 0;
+}
+</style>
