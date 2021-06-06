@@ -90,6 +90,15 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+        style="margin-top: 20px"
+        background
+        @current-change="handleCurrentChange"
+        :disabled="isLoading"
+        :page-size="filterParams.pageSize"
+        layout="prev, pager, next"
+        :total="totalCount"
+      />
     <el-dialog
       title="分配角色"
       :visible.sync="dialogVisible"
@@ -131,7 +140,7 @@ export default Vue.extend({
       users: [],
       filterParams: {
         currentPage: 1,
-        pageSize: 100,
+        pageSize: 6,
         phone: '',
         startCreateTime: '',
         endCreateTime: '',
@@ -141,7 +150,8 @@ export default Vue.extend({
       dialogVisible: false,
       roles: [],
       roleIdList: [],
-      currentUser: null // 分配角色的当前用户
+      currentUser: null, // 分配角色的当前用户
+      totalCount: 0
     }
   },
 
@@ -162,6 +172,7 @@ export default Vue.extend({
       }
       const { data } = await getUserPages(this.filterParams)
       this.users = data.data.records
+      this.totalCount = data.data.total
       this.loading = false
     },
 
@@ -200,6 +211,12 @@ export default Vue.extend({
       })
       this.$message.success('操作成功')
       this.dialogVisible = false
+    },
+
+    handleCurrentChange (val: number) {
+      // 请求获取对应页码的数据
+      this.filterParams.currentPage = val // 修改要查询的页码
+      this.loadUsers()
     }
   }
 })

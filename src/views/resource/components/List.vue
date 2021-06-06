@@ -97,7 +97,7 @@ export default Vue.extend({
         name: '',
         url: '',
         current: 1, // 默认查询第1页数据
-        size: 5, // 每页大小
+        size: 4, // 每页大小
         categoryId: null // 资源分类
       },
       totalCount: 0,

@@ -64,7 +64,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { getAllMenus, deleteMenu, getMenusList } from '@/services/menu'
+import { deleteMenu, getMenusList } from '@/services/menu'
 
 export default Vue.extend({
   name: 'MenuIndex',
@@ -86,10 +86,12 @@ export default Vue.extend({
 
   methods: {
     async loadMenuList () {
+      this.isLoading = true
       const { data } = await getMenusList(this.menuQueryParam)
       if (data.code === '000000') {
         this.menus = data.data.records
         this.totalCount = data.data.total
+        this.isLoading = false
       }
     },
 
