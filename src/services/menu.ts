@@ -29,6 +29,15 @@ export const getAllMenus = () => {
   })
 }
 
+// 分页获取菜单列表
+export const getMenusList = (data:{size: number; current: number}) => {
+  return request({
+    method: 'POST',
+    url: '/boss/menu/getMenuPages',
+    data
+  })
+}
+
 export const deleteMenu = (id: number) => {
   return request({
     method: 'DELETE',

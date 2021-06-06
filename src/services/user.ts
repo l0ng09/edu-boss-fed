@@ -5,10 +5,10 @@
 import request from '@/utils/request'
 import qs from 'qs'
 
- interface User {
-   phone: string
-   password: string
- }
+interface User {
+  phone: string
+  password: string
+}
 
 export const login = (data: User) => {
   return request({

@@ -49,31 +49,47 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-pagination
+        style="margin-top: 20px"
+        background
+        @current-change="handleCurrentChange"
+        :disabled="isLoading"
+        :page-size="menuQueryParam.size"
+        layout="prev, pager, next"
+        :total="totalCount"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { getAllMenus, deleteMenu } from '@/services/menu'
+import { getAllMenus, deleteMenu, getMenusList } from '@/services/menu'
 
 export default Vue.extend({
   name: 'MenuIndex',
   data () {
     return {
-      menus: [] // 菜单列表
+      menus: [], // 菜单列表
+      menuQueryParam: {
+        size: 8,
+        current: 1
+      },
+      isLoading: false,
+      totalCount: 0
     }
   },
 
   created () {
-    this.loadAllMenus()
+    this.loadMenuList()
   },
 
   methods: {
-    async loadAllMenus () {
-      const { data } = await getAllMenus()
+    async loadMenuList () {
+      const { data } = await getMenusList(this.menuQueryParam)
       if (data.code === '000000') {
-        this.menus = data.data
+        this.menus = data.data.records
+        this.totalCount = data.data.total
       }
     },
 
@@ -93,13 +109,19 @@ export default Vue.extend({
           const { data } = await deleteMenu(item.id)
           if (data.code === '000000') {
             this.$message.success('删除成功')
-            this.loadAllMenus() // 更新数据列表
+            this.loadMenuList() // 更新数据列表
           }
         })
         .catch(err => { // 取消执行这里
           console.log(err)
           this.$message.info('已取消删除')
         })
+    },
+
+    handleCurrentChange (val: number) {
+      // 请求获取对应页码的数据
+      this.menuQueryParam.current = val // 修改要查询的页码
+      this.loadMenuList()
     }
   }
 })

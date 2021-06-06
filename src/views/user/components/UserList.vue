@@ -36,7 +36,7 @@
       <el-table-column
         prop="id"
         label="用户ID"
-        width="100">
+        width="140">
       </el-table-column>
       <el-table-column
         prop="name"
@@ -80,7 +80,8 @@
       </el-table-column> -->
       <el-table-column
         prop="address"
-        label="操作">
+        label="操作"
+        width="120">
         <template slot-scope="scope">
           <el-button
             type="text"
@@ -92,9 +93,9 @@
     <el-dialog
       title="分配角色"
       :visible.sync="dialogVisible"
-      width="50%"
+      width="40%"
     >
-      <el-select v-model="roleIdList" multiple placeholder="请选择">
+      <el-select style="width: 100%" v-model="roleIdList" multiple placeholder="请选择">
         <el-option
           v-for="item in roles"
           :key="item.id"
